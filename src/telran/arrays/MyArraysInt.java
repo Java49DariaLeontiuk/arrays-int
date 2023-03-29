@@ -23,15 +23,13 @@ public class MyArraysInt {
 		// returns the source array if for a wrong index value
 		// - (less than 0 or greater than array.length -1)
 		// using the standard method System.arraycopy
+		int[] newArray = array;
 		if (index >= 0 && index <= array.length - 1) {
-			int newArray[] = new int[array.length - 1];
+			newArray = new int[array.length - 1];
 			System.arraycopy(array, 0, newArray, 0, index);
 			System.arraycopy(array, index + 1, newArray, index, (array.length - 1) - index);
-			return newArray;
-		} else {
-			return array;
 		}
-
+		return newArray;
 	}
 
 	public static int[] insertNumber(int[] array, int index, int num) {
@@ -50,6 +48,14 @@ public class MyArraysInt {
 		} else {
 			return array;
 		}
+
+	}
+	public static int[] insertNumberSorted(int[] array, int num) {
+		int index = Arrays.binarySearch(array,num);
+		if (index < 0) {
+			index = -index - 1;
+		}
+		return insertNumber(array, index, num);
 
 	}
 }

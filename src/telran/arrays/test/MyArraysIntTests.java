@@ -37,7 +37,7 @@ class MyArraysIntTests {
 		assertArrayEquals(expected, removeNumber(array, index));
 		assertArrayEquals(array, removeNumber(array, index1));
 		assertArrayEquals(array, removeNumber(array, index2));
-		assertArrayEquals(array1, removeNumber(array1, index)); // why it's work?
+		assertArrayEquals(array1, removeNumber(array1, index));
 	}
 
 	@Test
@@ -54,8 +54,20 @@ class MyArraysIntTests {
 		assertArrayEquals(array, insertNumber(array, index1, num));
 		assertArrayEquals(array, insertNumber(array, index2, num));
 		assertArrayEquals(expected1, insertNumber(array1, index, num));
+		assertArrayEquals(array1, insertNumber(array1, index2, num));
 	}
 
+	@Test
+	void testInsertNumberSorted() {
+		int array[] = {1,3,5,7};
+		int expected[] = {0,1,3,5,7};
+		int expected1[] = {1,3,3,5,7};
+		int expected2[] = {1,3,5,7,8};
+		assertArrayEquals(expected, insertNumberSorted(array, 0));
+		assertArrayEquals(expected1, insertNumberSorted(array, 3));
+		assertArrayEquals(expected2, insertNumberSorted(array, 8));
+		
+	}
 	@Test
 	void testCopyOf() {
 		int array[] = { 1, 2, 3 };
@@ -107,5 +119,8 @@ class MyArraysIntTests {
 		assertEquals(-1, Arrays.binarySearch(arrayNoSort, 3));
 		assertEquals(2, Arrays.binarySearch(arrayNoSort, 10));
 		// if array is not sorted, the results are undefined
+		assertEquals(-1, Arrays.binarySearch(arrayInDuplicateValues, 3, 0, 3));
+		assertEquals(-1, Arrays.binarySearch(arrayInDuplicateValues, -2, 5, 3));
+		assertEquals(-1, Arrays.binarySearch(arrayInDuplicateValues, 0, 15, 3));
 	}
 }
